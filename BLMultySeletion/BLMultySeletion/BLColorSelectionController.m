@@ -22,18 +22,23 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    if([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.modalPresentationCapturesStatusBarAppearance = NO;
+    }
     self.title = @"多选框";
     
+    [self initDefaultData];
+    [self initView];
+}
+
+- (void)initDefaultData
+{
     if (_arrData) {
         _arrData = [NSMutableArray array];
     }
-    
-    if([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0) {
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-//        self.modalPresentationCapturesStatusBarAppearance = NO;
-    }
-    
     /**
      * 数据请求之后添加
      */
@@ -60,8 +65,6 @@
         [arrChange addObject:itemDic];
     }
     _arrData = [NSMutableArray arrayWithArray:arrChange];
-    
-    [self initView];
 }
 
 - (void)initView
