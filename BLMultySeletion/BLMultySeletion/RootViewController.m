@@ -42,6 +42,8 @@
     [_btnSelected addTarget:self action:@selector(doActionToSelectColor) forControlEvents:UIControlEventTouchUpInside];
     _btnSelected.layer.cornerRadius = 3.0;
     _btnSelected.layer.masksToBounds = YES;
+    _btnSelected.layer.borderColor = [UIColor cyanColor].CGColor;
+    _btnSelected.layer.borderWidth = 1.0f;
     [self.view addSubview:_btnSelected];
 }
 
