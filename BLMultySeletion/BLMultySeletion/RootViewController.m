@@ -35,11 +35,13 @@
 - (void)initView
 {
     _btnSelected = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btnSelected.backgroundColor = [UIColor redColor];
+    _btnSelected.backgroundColor = [UIColor grayColor];
     _btnSelected.frame = CGRectMake(100, 100, ScreenWidth - 200, ScreenWidth - 200);
     [_btnSelected setTitle:@"颜色\n不限" forState:UIControlStateNormal];
     _btnSelected.titleLabel.numberOfLines = 0;
     [_btnSelected addTarget:self action:@selector(doActionToSelectColor) forControlEvents:UIControlEventTouchUpInside];
+    _btnSelected.layer.cornerRadius = 3.0;
+    _btnSelected.layer.masksToBounds = YES;
     [self.view addSubview:_btnSelected];
 }
 
@@ -66,9 +68,10 @@
             colortitle = [NSString stringWithFormat:@"%@,%@",colortitle,tempDic[@"color_name"]];
         }
     }
-    
-    [_dicSubmit setObject:colortitle forKey:@"carcolor"];
-    [_btnSelected setTitle:colortitle forState:UIControlStateNormal];
+    if (colortitle) {
+        [_dicSubmit setObject:colortitle forKey:@"carcolor"];
+        [_btnSelected setTitle:colortitle forState:UIControlStateNormal];
+    }
 }
 
 @end
